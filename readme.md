@@ -14,6 +14,10 @@ ReactCSSTransitionGroup inbuilt to allow animations per child on render.
 
 `npm install --save react-delayed-list`
 
+## Testing
+
+`npm test` - 100% test coverage.
+
 ## API
 
 Two props are taken:
@@ -68,5 +72,4 @@ import './style.css';
 
 ## Todo:
 
-- Tests
 - Benchmarks
