@@ -6,7 +6,8 @@
   "scripts": {
     "clean": "rm -rf lib && mkdir lib",
     "build": "npm run clean && babel src --out-file lib/index.js --ignore test.js",
-    "test": "jest",
+    "test": "jest --coverage",
+    "test:watch": "jest --watch",
     "storybook": "start-storybook -p 6006",
     "build-storybook": "build-storybook"
   },
@@ -16,14 +17,15 @@
     "UI"
   ],
   "repository": {
-    "type" : "git",
+    "type": "git",
     "url": "https://github.com/chrisgreg/react-delayed-list.git"
   },
   "author": "Chris Gregori <chrisgreg23@googlemail.com>",
   "license": "ISC",
   "dependencies": {
     "react": "^15.4.2",
-    "react-addons-css-transition-group": "^15.4.2"
+    "react-addons-css-transition-group": "^15.4.2",
+    "react-dom": "^15.4.2"
   },
   "devDependencies": {
     "@kadira/storybook": "^2.21.0",
@@ -32,6 +34,10 @@
     "babel-loader": "^6.4.1",
     "babel-preset-latest": "^6.24.0",
     "babel-preset-react": "^6.23.0",
+    "enzyme": "^2.8.0",
+    "jest": "^19.0.2",
+    "jest-cli": "^19.0.2",
+    "react-addons-test-utils": "^15.4.2",
     "react-dom": "^15.4.2"
   }
 }

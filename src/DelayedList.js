@@ -1,5 +1,5 @@
-import React, { Component } from 'react';
-import ReactCSSTransitionGroup from 'react-addons-css-transition-group';
+import React, { Component } from 'react'
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 export default class DelayedList extends Component {
 
@@ -11,28 +11,36 @@ export default class DelayedList extends Component {
   }
 
   componentDidMount() {
-    this.setData();
+    this.setData()
   }
 
   setData() {
-    const { children, delay } = this.props
-    let currentIndex = 0;
+    let { delay, children } = this.props
+    let currentIndex = 0
+
+    if (!Array.isArray(children)) {
+      children = new Array(1).fill(children);
+    }
 
     children.forEach(item => {
       setTimeout(item => {
         let newData = [...this.state.items, item]
         this.setState({
           items: newData
-        })}
-      , delay + (currentIndex * delay), item);
-      currentIndex++;
-    });
+        })
+      }, delay + (currentIndex * delay), item)
+
+      currentIndex++
+    })
   }
 
   render() {
-    const transitionClass = this.props.transitionClass || 'delayed-list-items';
+    const transitionClass = this.props.transitionClass || 'delayed-list-items'
     return (
-      <ReactCSSTransitionGroup transitionName={transitionClass}>
+      <ReactCSSTransitionGroup
+        transitionName={transitionClass}
+        transitionEnterTimeout={500}
+        transitionLeaveTimeout={300}>
         {this.state.items}
       </ReactCSSTransitionGroup>
     )
