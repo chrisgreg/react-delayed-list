@@ -29,11 +29,11 @@ export default class Demo extends Component {
 const ListOfStuff = (props) => {
 
   const toRender = props.items.map(i => (
-    <div>{i}</div>
+    <div key={i}>{i}</div>
   ))
   return(
     <DelayedList delay={500}>
-      <div>Hi</div>
+      {toRender}
     </DelayedList>
   )
 

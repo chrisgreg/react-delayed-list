@@ -14,6 +14,10 @@ export default class DelayedList extends Component {
     this.setData(nextProps.children);
   }
 
+  shouldComponentUpdate(nextProps, nextState) {
+    return this.state != nextState
+  }
+
   setData(nextProps) {
     let { delay } = this.props
     this.state.items = []
@@ -28,7 +32,7 @@ export default class DelayedList extends Component {
       })
     }
 
-    nextProps.forEach((item, index )=> {
+    nextProps.forEach((item, index) => {
       setTimeout(item => {
         let newData = [...this.state.items, item]
         this.setState({
