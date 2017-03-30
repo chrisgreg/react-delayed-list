@@ -22,6 +22,12 @@ export default class DelayedList extends Component {
       nextProps = new Array(1).fill(nextProps);
     }
 
+    if (nextProps.length === 0) {
+      return this.setState({
+        items: []
+      })
+    }
+
     nextProps.forEach((item, index )=> {
       setTimeout(item => {
         let newData = [...this.state.items, item]
