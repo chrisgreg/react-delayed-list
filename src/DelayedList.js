@@ -10,26 +10,25 @@ export default class DelayedList extends Component {
     }
   }
 
-  componentWillReceiveProps(){
-    this.setData();
+  componentWillReceiveProps(nextProps) {
+    this.setData(nextProps.children);
   }
 
-  setData() {
-    let { delay, children } = this.props
+  setData(nextProps) {
+    let { delay } = this.props
     this.state.items = []
 
-    if (!Array.isArray(children)) {
-      children = new Array(1).fill(children);
+    if (!Array.isArray(nextProps)) {
+      nextProps = new Array(1).fill(nextProps);
     }
 
-    children.forEach((item, i )=> {
+    nextProps.forEach((item, index )=> {
       setTimeout(item => {
         let newData = [...this.state.items, item]
         this.setState({
           items: newData
         })
-      }, delay + (i * delay), item)
-
+      }, delay + (index * delay), item)
     })
   }
 

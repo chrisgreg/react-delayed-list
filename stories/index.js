@@ -1,5 +1,6 @@
 import React from 'react';
 import DelayedList from '../src/DelayedList';
+import Demo from './Demo'
 import { storiesOf, action, linkTo } from '@kadira/storybook';
 import './styles.css';
 
@@ -47,3 +48,8 @@ storiesOf('DelayedList', module)
         <p>Quick little entry</p>
     </DelayedList>
   ))
+
+  storiesOf('Demo', module)
+    .add('Demo', () => (
+      <Demo />
+    ))

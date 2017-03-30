@@ -1,6 +1,6 @@
 {
   "name": "react-delayed-list",
-  "version": "1.0.4",
+  "version": "1.0.5",
   "description": "A delayed list rendering React component",
   "main": "lib/index.js",
   "scripts": {
