@@ -10,39 +10,38 @@ export default class DelayedList extends Component {
     }
   }
 
-  componentDidMount() {
-    this.setData()
+  componentWillReceiveProps(){
+    this.setData();
   }
 
   setData() {
     let { delay, children } = this.props
-    let currentIndex = 0
+    this.state.items = []
 
     if (!Array.isArray(children)) {
       children = new Array(1).fill(children);
     }
 
-    children.forEach(item => {
+    children.forEach((item, i )=> {
       setTimeout(item => {
         let newData = [...this.state.items, item]
         this.setState({
           items: newData
         })
-      }, delay + (currentIndex * delay), item)
+      }, delay + (i * delay), item)
 
-      currentIndex++
     })
   }
 
   render() {
     const transitionClass = this.props.transitionClass || 'delayed-list-items'
     return (
-      <ReactCSSTransitionGroup
-        transitionName={transitionClass}
-        transitionEnterTimeout={500}
-        transitionLeaveTimeout={300}>
-        {this.state.items}
-      </ReactCSSTransitionGroup>
+        <ReactCSSTransitionGroup
+          transitionName={transitionClass}
+          transitionEnterTimeout={500}
+          transitionLeaveTimeout={300}>
+          {this.state.items}
+        </ReactCSSTransitionGroup>
     )
   }
 }

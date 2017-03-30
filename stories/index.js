@@ -1,7 +1,16 @@
 import React from 'react';
 import DelayedList from '../src/DelayedList';
+import Demo from '../src/Demo'
 import { storiesOf, action, linkTo } from '@kadira/storybook';
 import './styles.css';
+
+const BasicList = (props) => {
+  return (
+    <DelayedList delay={200} >
+      this.props.children
+    </DelayedList>
+  )
+}
 
 storiesOf('DelayedList', module)
   .add('1 second delay', () => (
@@ -38,4 +47,9 @@ storiesOf('DelayedList', module)
         <p>Quick little entry</p>
         <p>Quick little entry</p>
     </DelayedList>
-  ));
+  ))
+
+storiesOf('Demo', module)
+    .add('Updating Props', () => (
+      <Demo />
+    ))
