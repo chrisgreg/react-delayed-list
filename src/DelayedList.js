@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+import { isEqual } from 'lodash'
 
 export default class DelayedList extends Component {
 
@@ -10,12 +11,15 @@ export default class DelayedList extends Component {
     }
   }
 
-  componentWillReceiveProps(nextProps) {
-    this.setData(nextProps.children);
-  }
-
   shouldComponentUpdate(nextProps, nextState) {
-    return this.state != nextState
+    if (!isEqual(this.props.children, nextProps.children)) {
+      this.setData(nextProps.children);
+      return true;
+    } else if (!isEqual(this.state.items, nextState.items)) {
+      return true;
+    } else {
+      return false;
+    }
   }
 
   setData(nextProps) {
@@ -32,7 +36,7 @@ export default class DelayedList extends Component {
       })
     }
 
-    nextProps.forEach((item, index) => {
+    nextProps.forEach((item, index )=> {
       setTimeout(item => {
         let newData = [...this.state.items, item]
         this.setState({
@@ -43,14 +47,10 @@ export default class DelayedList extends Component {
   }
 
   render() {
-    const transitionClass = this.props.transitionClass || 'delayed-list-items'
     return (
-        <ReactCSSTransitionGroup
-          transitionName={transitionClass}
-          transitionEnterTimeout={500}
-          transitionLeaveTimeout={300}>
-          {this.state.items}
-        </ReactCSSTransitionGroup>
+      <div>
+        {this.state.items}
+      </div>
     )
   }
 }
